@@ -1,0 +1,81 @@
+<!-- асгал: -Бүх бүтээгдэхүүнийг жагсаана. -4-аас дээш үнэлгээтэй бүтээгдэхүүндодтой
+тэмдэглэгээ (⭐) нэмнэ. -Бүх бүтээгдэхүүнд 15%-ийн хямдралыг тооцожхаруул.
+--calculateDiscount(): Бүтээгдэхүүний хямдралын үнийг тооцдог. -getStarRating():
+4-аас дээш үнэлгээтэй бүтээгдэхүүнд алтан од (⭐) нэмнэ. -createProductList():
+Бүтээгдэхүүний жагсаалтыг үүсгэж, HTML-д харуулна. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Mini shop</title>
+    <style>
+      * {
+        font-family: "Montserrat", sans-serif;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        margin: 10px 0;
+        font-size: 1.1em;
+        line-height: 1.6;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+      }
+      li span {
+        display: block;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="productList"></ul>
+  </body>
+  <script>
+    const products = [
+      { name: "Сүү", price: 4000, category: "Хүнс", rating: 4.6 },
+      { name: "Дэвтэр", price: 2000, category: "Бусад", rating: 4.2 },
+      { name: "Чихэр", price: 500, category: "Хүнс", rating: 3.9 },
+      { name: "Ус", price: 1500, category: "Хүнс", rating: 5 },
+      { name: "Шоколад", price: 6000, category: "Хүнс", rating: 4.2 },
+      { name: "Алчуур", price: 2500, category: "Ариун цэвэр", rating: 3.5 },
+      { name: "Ногоо", price: 1500, category: "Хүнс", rating: 4.7 },
+      { name: "Саван", price: 2000, category: "Ариун цэвэр", rating: 3 },
+    ];
+
+    const container = document.getElementById("productList");
+
+    function renderProductList() {
+      products.map(renderProduct);
+    }
+
+    function renderProduct(product) {
+      const li = document.createElement("li");
+      const title = product.name + getStarRating(product.rating);
+      const discountedPrice = calculateDiscount(product.price);
+
+      li.innerHTML = `
+        <h3>${title}</h3>
+        <span>Анхны үнэ:${product.price}₮ 👉🏻 <b> Хямдралтай: ${discountedPrice}</b></span>
+          `;
+      container.appendChild(li);
+    }
+
+    function calculateDiscount(price) {
+      return (price * 0.85).toFixed(2);
+    }
+
+    function getStarRating(rating) {
+      if (rating > 4) {
+        return "⭐️⭐️⭐️";
+      } else {
+        return "";
+      }
+    }
+
+    renderProductList();
+  </script>
+</html>
