@@ -52,10 +52,10 @@
       products.map(renderProduct);
     }
 
-    function renderProduct(product) {
-      const li = document.createElement("li");
-      const title = product.name + getStarRating(product.rating);
-      const discountedPrice = calculateDiscount(product.price);
+    // function renderProduct(product) {
+    //   const li = document.createElement("li");
+    //   const title = product.name + getStarRating(product.rating);
+    //   const discountedPrice = calculateDiscount(product.price);
 
       li.innerHTML = `
         <h3>${title}</h3>
